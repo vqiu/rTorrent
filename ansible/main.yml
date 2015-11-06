@@ -3,5 +3,19 @@
 - hosts: all
   remote_user: root
 
-  - tasks:
+  vars:
+    Down_Dir: /data/rTorrent/Download
+    Sess_Dir: /data/rTorrent/session
+    Torrent_Dir: /data/rTorrent/torrent
 
+  tasks:
+    - name: Create directory for rtorrent
+      file: state=directory name={{ Down_Dir }}
+      file: state=directory name={{ Sess_Dir }}
+      file: state=directory name={{ Torrent_Dir }}
+
+    - name: Install rtorrent
+      yum: name=rtorrent state=latest
+
+    - name: Write the rtorrent config file
+      template: src=/templates/rtorrent.rc.j2

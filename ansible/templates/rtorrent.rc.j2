@@ -1,0 +1,52 @@
+# ~/.rtorrent.rc
+
+# 修改编码为 UTF-8
+encoding_list=UTF-8
+
+# 每个种子所允许连接的数量.
+#min_peers = 40
+max_peers = 100
+
+# 同上，针对的是已经完成的种子 (-1 表示和下载中的种子一致).
+#min_peers_seed = 10
+max_peers_seed = 50
+
+# 每个种子允许最大同时上传数.
+max_uploads = 15
+
+# 下载上传限制 (单位:KB, 0 为不限制).
+#download_rate = 0
+#upload_rate = 0
+
+# 种子数据保存路径 (建议使用绝对路径).
+directory = {{ Down_Dir }}
+
+# sission 保存目录, 允许 rTorrent 保存你的 torrents 进度.
+session = {{ Sess_Dir }}
+
+# rTorrent 对种子监视目录,只要将种子文件丢进去, rTorrent 就自动下载, 移除种子就自动停止
+schedule = watch_directory,5,5,load_start={{ Torrent_Dir }}/*.torrent
+schedule = untied_directory,5,5,stop_untied=
+
+# 当磁盘空间不足时停止下载
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+
+# 监听端口范围.
+port_range = 6890-6999
+
+# 随机从上面的端口范围选择端口.
+port_random = no
+
+
+# 加密选项,建议开启
+encryption = allow_incoming,enable_retry,prefer_plaintext
+
+# dht 选项, 默认按需要开启
+dht = auto
+
+# DHT 端口
+dht_port = 6881
+
+# 允许种子交换
+# peer_exchange = yes
