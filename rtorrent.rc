@@ -50,6 +50,3 @@ dht_port = 6881
 
 # 允许种子交换
 # peer_exchange = yes
-
-# 定义邮件通知功能
-on_finished = move_complete,"execute=/data/rTorrent/shell/report.sh"
