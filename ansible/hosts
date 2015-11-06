@@ -1,1 +1,1 @@
-121.40.125.20
+me ansible_ssh_host=localhost ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="1+1=6&why??"
